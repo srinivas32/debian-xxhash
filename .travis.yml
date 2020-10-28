@@ -1,6 +1,4 @@
-arch:
-  - amd64
-  - ppc64le
+
 language: c
 
 # Dump CPU info before start
@@ -13,7 +11,6 @@ matrix:
 
     - name: General linux tests (Xenial)
       dist: xenial
-      arch: amd64
       addons:
         apt:
           packages:
@@ -32,7 +29,6 @@ matrix:
 
 
     - name: Check results consistency on x64
-      arch: amd64
       script:
         - CPPFLAGS=-DXXH_VECTOR=XXH_SCALAR make check   # Scalar code path
         - make clean
@@ -47,7 +43,6 @@ matrix:
 
     - name: ARM compilation and consistency checks (Qemu)
       dist: xenial
-      arch: amd64
       addons:
         apt:
           packages:
@@ -64,7 +59,6 @@ matrix:
 
     - name: aarch64 compilation and consistency checks
       dist: xenial
-      arch: arm64
       script:
         # aarch64
         - CPPFLAGS=-DXXH_VECTOR=XXH_SCALAR make check   # Scalar code path
@@ -82,7 +76,6 @@ matrix:
     # do not support POWER8 emulation, and compiling QEMU from source is a pain.
     - name: PowerPC + PPC64 compilation and consistency checks (Qemu on Bionic)
       dist: bionic
-      arch: amd64
       addons:
         apt:
           packages:
